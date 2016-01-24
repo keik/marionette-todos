@@ -16,5 +16,5 @@ an example app with following stacks
 
 for
 
-* running developing server which browserify scripts with [budo](https://github.com/mattdesl/budo))
+* running developing server with [budo](https://github.com/mattdesl/budo), which browserify scripts automatically
 * watching changes of *.less and compile src/bundle.css
