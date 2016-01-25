@@ -1,10 +1,13 @@
 let d            = require('debug')('[C] todos'),
+    config       = require('../config'),
     Collection   = require('backbone').Collection,
-    LocalStorage = require('backbone.localstorage')
+    Todo         = require('../model/todo')
 
 let Todos = Collection.extend({
 
-  localStorage: new LocalStorage('todos'),
+  model: Todo,
+
+  url: `//${config.HOST}/todos`,
 
   initialize: function() {
     d('#initialize')
