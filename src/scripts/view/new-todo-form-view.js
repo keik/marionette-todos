@@ -1,5 +1,4 @@
 let d          = require('debug')('[V] new-todo-form-view'),
-    _          = require('underscore'),
     util       = require('../util'),
     ItemView   = require('backbone.marionette').ItemView,
     Todos      = require('../collection/todos'),
@@ -49,10 +48,7 @@ module.exports = ItemView.extend({
   validateInputs: function() {
     d('#validateInputs')
     let err = this.model.validate()
-    this.$('form').children('.has-error').removeClass('has-error')
-    _.forEach(err, function(v, k) {
-      this.$(`[name=${k}]`).parent().addClass('has-error')
-    }, this)
+    this.$('form').toggleClass('has-error', err != null)
     return err
   }
 

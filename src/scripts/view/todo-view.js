@@ -1,4 +1,4 @@
-let d        = require('debug')('[V] todos-view'),
+let d        = require('debug')('[V] todo-view'),
     ItemView = require('backbone.marionette').ItemView
 
 module.exports = ItemView.extend({
@@ -20,7 +20,7 @@ module.exports = ItemView.extend({
     this.parentView = opts.parentView
     this.toggleVisibleByFilter()
 
-    this.listenTo(this.model, 'change', this.toggleVisibleByFilter)
+    this.listenTo(this.model, 'change', this.render)
     this.listenTo(this.model, 'filter', this.toggleVisibleByFilter)
   },
 
@@ -66,6 +66,11 @@ module.exports = ItemView.extend({
     d('#onBlurDueDateInput')
     this.model.set('dueDate', e.target.value)
     this.render()
+  },
+
+  onRender: function() {
+    d('#onRender')
+    this.toggleVisibleByFilter()
   },
 
   toggleVisibleByFilter: function() {

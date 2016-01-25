@@ -12,7 +12,6 @@ module.exports = Application.extend({
 
   initialize: function() {
     d('initialize')
-
     this.appView = new AppView()
   }
 

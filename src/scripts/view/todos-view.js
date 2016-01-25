@@ -31,6 +31,7 @@ module.exports = CompositeView.extend({
   },
 
   onClickShowAllButton: function(e) {
+    d('#onClickShowAllButton')
     this.$(e.target).addClass('active')
       .siblings().removeClass('active')
     this.filter = 'all'
@@ -40,6 +41,7 @@ module.exports = CompositeView.extend({
   },
 
   onClickShowCompletedButton: function(e) {
+    d('#onClickShowCompletedButton')
     this.$(e.target).addClass('active')
       .siblings().removeClass('active')
     this.filter = 'completed'
@@ -49,6 +51,7 @@ module.exports = CompositeView.extend({
   },
 
   onClickShowActiveButton: function(e) {
+    d('#onClickShowActiveButton')
     this.$(e.target).addClass('active')
       .siblings().removeClass('active')
     this.filter = 'active'
@@ -60,9 +63,8 @@ module.exports = CompositeView.extend({
   onClickCompleteAll: function(e) {
     d('#onClickCompleteAll')
     this.collection.forEach(function(todo) {
-      todo.set('completed', true)
+      todo.set('completed', true).save()
     })
-    this.render()
   },
 
   onClickDeleteCompleteButton: function(e) {
