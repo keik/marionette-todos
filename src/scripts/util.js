@@ -12,6 +12,9 @@ module.exports = {
    *   </form>
    *
    *   -> {title: 'this is a title'}
+   *
+   * @param {Object} formEl form element
+   * @returns {Object} serialized object
    */
   serializeObject: function(formEl) {
     return _.reduce(formEl.elements, function(acc, element) {
@@ -24,13 +27,17 @@ module.exports = {
 
   /**
    * clear all values of input elements in specified form element
+   *
+   * @param {Object} formEl form element
+   * @returns {Object} form element
    */
   clearValues: function(formEl) {
-    return _.forEach(formEl.elements, function(element) {
+    _.forEach(formEl.elements, function(element) {
       if (element.name) {
         element.value = ''
       }
     })
+    return formEl
   }
 
 }

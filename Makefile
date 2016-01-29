@@ -6,7 +6,10 @@ endif
 
 DIST    = dist
 
-build: node_modules clean lint $(call fixPath,$(DIST)/bundle.js) $(call fixPath,$(DIST)/bundle.css)
+build: node_modules clean lint test $(call fixPath,$(DIST)/bundle.js) $(call fixPath,$(DIST)/bundle.css)
+
+test: node_modules
+	@$(call fixPath,NODE_ENV=dev node_modules/.bin/mocha --compilers js:espower-babel/guess test/tests.js)
 
 watch:
 	@make -j run-dev-server run-json-server watch-less
@@ -44,4 +47,4 @@ clean: node_modules
 node_modules: package.json
 	@npm i
 
-.PHONY: build watch run-dev-server run-json-server watch-less css lint clean
+.PHONY: build test watch run-dev-server run-json-server watch-less css lint clean
