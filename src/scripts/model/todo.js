@@ -1,7 +1,9 @@
 let d     = require('debug')('[M] todo'),
-    Model = require('backbone').Model
+    _     = require('underscore'),
+    Model = require('backbone').Model,
+    Validation  = require('backbone-validation')
 
-module.exports = Model.extend({
+let Todo = Model.extend({
 
   validation: {
     title: {
@@ -20,3 +22,8 @@ module.exports = Model.extend({
   }
 
 })
+
+// enable to validate method on each models, without view
+_.extend(Todo.prototype, Validation.mixin)
+
+module.exports = Todo
